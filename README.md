@@ -104,3 +104,26 @@ flowchart LR
 
 Refer to `docs/architecture.md` for more granular diagrams and sequence flows as the implementation evolves.
 
+## Build Task Checklist
+- [ ] Create feature branches per functionality before starting implementation.
+- [ ] Initialize PNPM/Turborepo workspace with shared TypeScript config, ESLint, Prettier, and commit hooks.
+- [ ] Author `docker-compose.yml` for Postgres, Redis, Elasticsearch, Stripe CLI; add convenience scripts for startup and teardown.
+- [ ] Scaffold Next.js app in `apps/web` with Tailwind, TanStack Query, and environment configuration plumbing.
+- [ ] Implement base layout, home page, course list placeholder, and global UI components (navbar, auth buttons).
+- [ ] Wire managed auth provider (Clerk/Auth0/Supabase), implement signup/login/logout flows, and secure routes with session handling.
+- [ ] Bootstrap NestJS API gateway in `services/api` with JWT middleware, request validation, error handling, and health probes.
+- [ ] Set up Prisma in `services/course-catalog`, define schema for users/courses/purchases/events, and run initial migration.
+- [ ] Seed sample course data and expose CRUD endpoints for courses (list/detail/create/update).
+- [ ] Integrate Elasticsearch client, provision index mappings, and build background indexer that syncs course changes.
+- [ ] Expose debounced search endpoint via API gateway, implement query shaping, and integrate search UI in Next.js with optimistic states.
+- [ ] Implement course detail page with purchase CTA and gated content messaging.
+- [ ] Create Stripe products/prices, wire Checkout Session creation endpoint, and redirect flow from frontend.
+- [ ] Handle Stripe webhooks in `services/payment`, verify signatures, persist purchase records, and emit entitlement events.
+- [ ] Update API gateway to expose purchase status and entitlement checks to the frontend.
+- [ ] Add account dashboard page showing enrolled courses and purchase history.
+- [ ] Configure shared Zod DTOs in `packages/shared` and enforce them across services.
+- [ ] Stand up Redis/BullMQ worker for background jobs (search indexing, webhook retries).
+- [ ] Instrument basic observability (OpenTelemetry traces, centralized logging hooks).
+- [ ] Write unit tests (Vitest/Jest) for services and component tests for UI; add Playwright e2e covering signup, search, checkout.
+- [ ] Configure GitHub Actions CI for lint/test/build and preview deploys (Vercel for web, container builds for services).
+- [ ] Prepare deployment manifests (Fly.io/ECS/Railway) and document environment variable requirements.
