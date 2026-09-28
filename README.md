@@ -4,6 +4,8 @@
 
 Skillify is an MVP-scale learning platform that lets learners search, buy, and access curated courses. This document captures the high-level architecture, tech stack choices, and the roadmap to get the initial version in place.
 
+The GitHub repository is named **stack-hub-mvp** because it is the planning hub for the full Skillify stack (web app, API gateway, auth, catalog, payments, and shared packages) — not a separate product called "Stack Hub".
+
 ## Product Goals
 - Enable users to sign up, sign in, and manage their accounts securely.
 - Provide a fast, debounced search experience across a growing course catalog.
@@ -12,7 +14,7 @@ Skillify is an MVP-scale learning platform that lets learners search, buy, and a
 
 ## System Overview
 - `apps/web`: Next.js/React frontend, handles the learner experience, login flows, and checkout.
-- `services/api`: API gateway/BFF (NestJS or Fastify) that authenticates users, orchestrates service calls, and shapes responses for the UI.
+- `services/api`: API gateway/BFF (NestJS) that authenticates users, orchestrates service calls, and shapes responses for the UI.
 - `services/auth`: AuthN/AuthZ service wrapping a managed provider (Clerk/Auth0/Supabase Auth) and issuing JWTs.
 - `services/course-catalog`: CRUD for courses, tagging, search indexing, and course metadata management.
 - `services/payment`: Handles Stripe integration, webhooks, and purchase state.
@@ -61,7 +63,7 @@ flowchart LR
 
 ## Tech Stack
 - **Frontend**: Next.js 14 (App Router), React, Tailwind CSS, TanStack Query, next-auth or Auth provider SDK.
-- **Backend**: TypeScript, NestJS (or Fastify + tRPC), Prisma ORM, PostgreSQL, Elasticsearch JS client, Stripe SDK, BullMQ for async jobs.
+- **Backend**: TypeScript, NestJS, Prisma ORM, PostgreSQL, Elasticsearch JS client, Stripe SDK, BullMQ for async jobs.
 - **Infrastructure**: Docker Compose for local services (Postgres, Redis, Elasticsearch, Stripe CLI), Terraform (later) for provisioning.
 - **CI/CD**: GitHub Actions for lint/test/build; deploy previews via Vercel or similar.
 

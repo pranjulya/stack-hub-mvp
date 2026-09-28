@@ -65,7 +65,8 @@ sequenceDiagram
     User->>WebApp: Click "Buy Course"
     WebApp->>API: POST /checkout (course_id)
     API->>Stripe: Create Checkout Session
-    Stripe-->>WebApp: Checkout URL
+    Stripe-->>API: Checkout URL
+    API-->>WebApp: Checkout URL
     WebApp-->>User: Redirect to Stripe
     Stripe-->>PaymentSvc: Webhook (checkout.session.completed)
     PaymentSvc->>DB: Mark purchase as complete
