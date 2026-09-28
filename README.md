@@ -1,5 +1,7 @@
 # Skillify MVP (Stack Hub)
 
+> **Status: architecture/planning only. No code yet.** This repository currently contains only this README and `docs/architecture.md`. The folders, services and commands described below are planned; see the [Build Task Checklist](#build-task-checklist) for progress.
+
 Skillify is an MVP-scale learning platform that lets learners search, buy, and access curated courses. This document captures the high-level architecture, tech stack choices, and the roadmap to get the initial version in place.
 
 ## Product Goals
@@ -70,7 +72,9 @@ flowchart LR
 - `purchases`: user_id, course_id, stripe_session_id, status.
 - `events`: idempotent log of webhook or domain events.
 
-## Local Development Flow
+## Planned Local Development Flow
+These commands describe the intended workflow once the workspace is scaffolded. They will not work yet because none of the referenced apps, services or Docker Compose files exist.
+
 1. Install dependencies: `pnpm` or `yarn` workspaces for monorepo management.
 2. Start infrastructure: `docker compose up postgres redis elasticsearch stripe`.
 3. Run services:
